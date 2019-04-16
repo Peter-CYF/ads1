@@ -34,9 +34,9 @@ This module will be introducing new techniques for storing data and working with
 
 #### A Small Note Before We Begin
 
-All the examples you will see this week are things that are generally easier to solve with loops than recursion. This is because they are simple examples designed to help you understand what recursion is and how it works.
+All the examples you will see in this lesson are things that are generally easier to solve with loops than recursion. This is because they are simple examples designed to help you understand what recursion is and how it works.
 
-Next week we will be looking at practical uses of recursion, and problems where a recursive solution is much easier to write than one that uses loops, but you need to understand the basics first!
+Next lesson we will be looking at practical uses of recursion, and problems where a recursive solution is much easier to write than one that uses loops, but you need to understand the basics first!
 
 ### What is recursion and how does it work?
 
@@ -159,7 +159,7 @@ When a function gets called recursively, each new recursive call takes it closer
 
 Code in the function that executes before the recursive call will be called with the inputs to each new recursive call. In the first example we call `console.log(3)`, then `console.log(2)`, then `console.log(1)`.
 
-Code in the function that executes after the recursive call will be called with the inputs to each new recursive call in reverse order! In the first example we call `console.log(1)`, then `console.log(2)`, then `console.log(3)`. This is because we have to return from the functions `countDown(1)`, `countDown(2)` and `countDown(3)` in order to get to that code.
+Code in the function that executes after the recursive call will be called with the inputs to each new recursive call in reverse order! In the second example we call `console.log(1)`, then `console.log(2)`, then `console.log(3)`. This is because we have to return from the functions `countDown(1)`, `countDown(2)` and `countDown(3)` in order to get to that code.
 
 Often we want to return the results of work that a function has done. If that function is recursive, all the code we write that works with those results has to come after the recursive call. This means that we need to get used to working with the reverse direction.
 
@@ -168,7 +168,7 @@ Often we want to return the results of work that a function has done. If that fu
 
 ### Using return values with recursion
 
-We often run into problems where the solution can be expressed in terms of the solution to an easier problem. Recursion can be very useful in this context.
+We often run into problems where the solution can be expressed in terms of the solution to an easier problem. Recursion is very useful in this context.
 
 Here's a simple example:
 
@@ -193,13 +193,11 @@ findCharacter('d', 'hello world');
 
 How does this work?
 
-If we are trying to find if a character exists in some text, and there isn't any text, then it's obvious that it's not there.
+If we have five characters to examine, and the first character isn't the one we want, we return the result for the remaining four characters. If the first of the four characters isn't the character we want, we return the result for three characters, and so on down until we have no characters left and it's obvious we haven't found it.
 
-If we are trying to find if a character exists in some text, and it's the first letter of that text, then obviously it is there.
+At each stage we either have the answer, or we're solving a smaller and easier problem than the one we started with. The easiest problem of all is answering whether the thing we're looking for is in an empty string - clearly it isn't.
 
-If we are trying to find if a character exists in some text, and it's not the first letter of that text, then the first letter is no good to us, we should throw it away and look at the rest of the text.
-
-We are building up from simpler solutions. If we have five letters to examine, and the first letter isn't the one we want, we return the result for the remaining four letters. If the first of the four letters isn't the letter we want, we return the result for three letters, and so on down until we have no letters left and it's obvious we haven't found it.
+In the next lesson we'll start looking at how we can use this technique to divide problems up in much more powerful ways.
 
 #### Note
 
