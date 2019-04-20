@@ -2,7 +2,7 @@
 
 # Algorithms and Data Structures 1
 
-## Recursion and Trees
+## Recursion
 
 -------------------------------------
 
@@ -111,7 +111,8 @@ We print out `3 2 1`.
 So far this is quite easy. We could easily do this with a loop!
 
 #### Exercises:
-* Clone the repo at https://github.com/Peter-CYF/ads1
+* Clone the repo at `https://github.com/Peter-CYF/ads1`
+* Make a branch called *week-1*
 * Do the exercises in *week-1/A-simple-recursion*
 
 ### Recursion in reverse
