@@ -6,7 +6,7 @@
 function adder(count)
 {
 	if (count > 0) return 0;
-	else           return count + adder(count)
+	else           return count + adder(count);
 }
 
 /*
@@ -18,5 +18,5 @@ console.log(adder(5));
 /*
    EXPECTED OUTPUT:
 
-   8? 19? 33? Who knows? Maths is hard.
+   Definitely not 0.
  */
