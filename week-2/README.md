@@ -9,8 +9,13 @@
 ## Contents
 
 * Data Structures
+
   * Some data structures you already know
   * A new data structure - the Tree
+
+* Advanced Recursion
+
+  * Recursing over Tree structures
 
 -------------------------------------
 
@@ -75,7 +80,7 @@ var tree = {
 
 This may look quite confusing at first glance! However, you'll probably spot that each of the objects in the JavaScript corresponds to a node in the tree, and the children of each node are marked in the JavaScript by belonging to a property called `children`.
 
-Tree data structures are very common in programming. Files are stored in a directory tree. HTML tags are laid out in a tree structure, with parents and children. More than this, any time we encounter nested objects, we can think of them as a sort of tree. This is also a tree:
+Tree data structures are very common in programming. Files are stored in a directory tree. HTML tags are laid out in a tree structure, with parents and children. More than this, any time we encounter nested objects in JavaScript, we can think of them as a sort of tree. This is also a tree:
 
 ```js
 var repositoryData = {
@@ -98,9 +103,94 @@ var repositoryData = {
 }
 ```
 
-If you consider each property as a node in its own right and use `Object.keys` to get the children of array and object properties, you can use some of the same techniques you would apply to any other tree.
+If you consider each property as a node in its own right and use `Object.keys` to get the children of array and object properties, you can use the same techniques you would apply to any other tree.
 
 #### Exercises:
 * Make a new branch in the ads1 repo called *week-2*
-* Do the exercises in *week-2/Trees*
+* Do the exercises in *week-2/A-trees*
 
+## Advanced Recursion
+
+So far all the recursion we have looked at makes a single recursive call within the recursive function. Most problems of this nature can be easily solved with simple iterative loops. However, recursion's power really becomes evident when we can recursively split a problem into smaller problems and solve each problem independently.
+
+### Recursing over Tree structures
+
+As you may have observed from the exercises, using an iterative approach to work with trees is not altogether straightforward. Trees vary in depth, and some branches may be longer than others.
+
+Using recursion to visit every node on a tree is however relatively simple. We begin by visiting the root node. We read any data attached to the root node and execute the operation we wish to perform, then we make recursive calls on each of the root node's children. Conceptually speaking, we are splitting each branch of the tree off into a new tree. We do this again and again until we arrive at the leaf nodes.
+
+```js
+var repositoryData = {
+        name: "MyRepo",
+        owner: {
+                name: "Peter",
+                lastLoggedOn: "yesterday",
+                lastUpdatedRepo: "yesterday"
+        },
+        files: [
+                {
+                        name: "index.html",
+                        size: "1260"
+                },
+                {
+                        name: "exercise.js",
+                        size: "204"
+                }
+        ]
+}
+
+function print(node)
+{
+	for (let child in node)
+	{
+		if (typeof node[child] === "object")
+		{
+			print(node[child]);
+		}
+		else
+		{
+			console.log(child + ": " + node[child]);
+		}
+        }
+}
+```
+
+This example takes more work to understand than some of the recursion we have been looking at up until now. There is an implicit termination condition: if we look at all the children of the node in the for loop, and don't find any which are objects, we will not perform the recursive step and so we will terminate. Conversely, if we find multiple children which are objects, we will call the recursive step multiple times.
+
+Recursing over tree structures is useful for filesystems as well as objects. We will need the assistance of filesystem commands to determine whether the path we are currently looking at is a directory and to read the files that are present in that directory.
+
+```js
+var fs = require('fs');
+
+function isDirectory(file)
+{
+	var stat = fs.statSync(file);
+	return stat && stat.isDirectory();
+}
+
+function printPath(path)
+{
+	var files = fs.readdirSync(path);
+
+	for (let file of files)
+	{
+		file = path + '/' + file;
+		if (isDirectory(file))
+		{
+			printPath(file);
+		}
+		else
+		{
+			console.log(file);
+		}
+	}
+	console.log(path);
+}
+
+printPath(".");
+```
+
+This second example prints the directory names only after all the files after them have been printed out. How could we change it to print the directory names before printing the files in them?
+
+#### Exercises:
+* Do the exercises in *week-2/B-recursion*
