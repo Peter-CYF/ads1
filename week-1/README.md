@@ -22,9 +22,9 @@
 
 ## What do we mean by Algorithms and Data Structures?
 
-"Algorithm" is a word that is almost exclusively used by mathematicians and people who program computers. It means "a process or set of rules that are followed to carry out a calculation or solve a problem".
+"Algorithm" is a word that is used by mathematicians and people who program computers. It means "a process or set of rules that are followed to carry out a calculation or solve a problem".
 
-In a sense an algorithm is a recipe we can program the computer to follow. You could say all the programs we write on the computer contain algorithms, in a way, but usually we save the word to describe solutions to complex problems.
+In a way an algorithm is a recipe we can program the computer to follow. You could say all the programs we write on the computer contain algorithms, but usually we only use the word for well-known solutions to common problems.
 
 "Data structure" is a phrase we use when we want to convey how data that belongs together is stored in the computer's memory and used. This sounds very vague, but in practice there are a limited number of common ways that data is structured.
 
@@ -108,8 +108,6 @@ countDown(1) prints 1 to the console.
 
 We print out `3 2 1`.
 
-So far this is quite easy. We could easily do this with a loop!
-
 #### Exercises:
 * Clone the repo at `https://github.com/Peter-CYF/ads1`
 * Make a branch called *week-1*
@@ -152,7 +150,7 @@ countDown(3) prints 3 to the console.
 
 We print out `1 2 3`.
 
-We should probably rename it `countUp` now!
+We should probably rename our function `countUp` now!
 
 ### Reasoning recursively
 
@@ -162,14 +160,14 @@ Code in the function that executes before the recursive call will be called with
 
 Code in the function that executes after the recursive call will be called with the inputs to each new recursive call in reverse order! In the second example we call `console.log(1)`, then `console.log(2)`, then `console.log(3)`. This is because we have to return from the functions `countDown(1)`, `countDown(2)` and `countDown(3)` in order to get to that code.
 
-Often we want to return the results of work that a function has done. If that function is recursive, all the code we write that works with those results has to come after the recursive call. This means that we need to get used to working with the reverse direction.
+This may seem more confusing. However, we often want to return the result of work carried out by a function. If that function is recursive, all the code we write that works with those results has to come after the recursive call. This means that we need to get used to working with this reverse direction.
 
 #### Exercises:
 * Do the exercises in *week-1/B-reverse-recursion*
 
 ### Using return values with recursion
 
-We often run into problems where the solution can be expressed in terms of the solution to an easier problem. Recursion is very useful in this context.
+When we want to perform a calculation or manipulate data with recursion, we return the results so far from the recursive function.
 
 Here's a simple example:
 

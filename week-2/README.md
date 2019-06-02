@@ -21,9 +21,9 @@
 
 ## Data Structures
 
-When we program in JavaScript, it is often tempting to think about what we are doing in terms of the features of the language and the types the language recognises. One variable might hold an array, another variable might contain an object.
+When we program in JavaScript, it is easy to think about what we are doing in terms of the features of the language and the types the language recognises. One variable might hold an array, another variable might contain an object.
 
-In computer science however we tend to think of the way data is structured at a more abstract level, in terms of what the data structure allows us to do. An array allows us to keep a list of items, and an object lets us pair arbitrary keys with values through its flexible approach to adding properties.
+In computer science however we tend to think of the way data is structured at a more abstract level, in terms of what the data structure allows us to do - for instance, an array allows us to keep a list of items, and an object lets us pair keys with values.
 
 ### Some data structures you already know
 
@@ -51,7 +51,7 @@ Here is a diagram of a possible Tree:
 
 ![Trees grow down?](tree.png)
 
-You will note the "root node" is at the top. Traditionally in Computer Science trees are drawn growing down from their roots. This may lead you to draw your own conclusions on how often Computer Scientists go outside.
+You will see the "root node" is at the top. Traditionally in Computer Science trees are drawn growing down from their roots. This may lead you to some ideas as to how often computer scientists go outside.
 
 When you are going up the tree toward the root node, the node directly above the current node is called the "parent node" or sometimes just "parent", and any nodes which are on branches that descend below the current node are called "child nodes" or sometimes just "children".
 
@@ -78,7 +78,7 @@ var tree = {
 };
 ```
 
-This may look quite confusing at first glance! However, you'll probably spot that each of the objects in the JavaScript corresponds to a node in the tree, and the children of each node are marked in the JavaScript by belonging to a property called `children`.
+This may look quite confusing at first glance! However, you can see that each of the objects in the JavaScript corresponds to a node in the tree, and the children of each node are marked in the JavaScript by belonging to a property called `children`.
 
 Tree data structures are very common in programming. Files are stored in a directory tree. HTML tags are laid out in a tree structure, with parents and children. More than this, any time we encounter nested objects in JavaScript, we can think of them as a sort of tree. This is also a tree:
 
@@ -103,7 +103,7 @@ var repositoryData = {
 }
 ```
 
-If you consider each property as a node in its own right and use `Object.keys` to get the children of array and object properties, you can use the same techniques you would apply to any other tree.
+If you think of each property as a node in its own right and use `Object.keys` to get the children of array and object properties, you can use the same techniques you would apply to any other tree.
 
 #### Exercises:
 * Make a new branch in the ads1 repo called *week-2*
@@ -111,13 +111,13 @@ If you consider each property as a node in its own right and use `Object.keys` t
 
 ## Advanced Recursion
 
-So far all the recursion we have looked at makes a single recursive call within the recursive function. Most problems of this nature can be easily solved with simple iterative loops. However, recursion's power really becomes evident when we can recursively split a problem into smaller problems and solve each problem independently.
+So far all the recursion we have looked at makes a single recursive call within the recursive function. Most problems of this nature can be solved more simply with loops. However, recursion becomes easier to work with than loops when we have problems that we can split into many smaller problems which can be solved in the same way.
 
 ### Recursing over Tree structures
 
-As you may have observed from the exercises, using an iterative approach to work with trees is not altogether straightforward. Trees vary in depth, and some branches may be longer than others.
+As you may have noticed when you were doing the exercises, it is difficult to work with trees using loops. Trees vary in depth, and some branches may be longer than others.
 
-Using recursion to visit every node on a tree is however relatively simple. We begin by visiting the root node. We read any data attached to the root node and execute the operation we wish to perform, then we make recursive calls on each of the root node's children. Conceptually speaking, we are splitting each branch of the tree off into a new tree. We do this again and again until we arrive at the leaf nodes.
+Using recursion to visit every node on a tree is however relatively simple. We begin by visiting the root node. We read any data attached to the root node, do what our function is supposed to with it, then make recursive calls on each of the root node's children. In a way we are splitting each branch of the tree off into a new tree. We do this again and again until we arrive at the leaf nodes.
 
 ```js
 var repositoryData = {
@@ -155,9 +155,11 @@ function print(node)
 }
 ```
 
-This example takes more work to understand than some of the recursion we have been looking at up until now. There is an implicit termination condition: if we look at all the children of the node in the for loop, and don't find any which are objects, we will not perform the recursive step and so we will terminate. Conversely, if we find multiple children which are objects, we will call the recursive step multiple times.
+This example takes more work to understand than some of the recursion we have been looking at up until now. The termination condition is not stated separately, but happens in this way: if we look at all the children of the node in the for loop, and don't find any which are objects, we will not perform the recursive step and so we will terminate.
 
-Recursing over tree structures is useful for filesystems as well as objects. We will need the assistance of filesystem commands to determine whether the path we are currently looking at is a directory and to read the files that are present in that directory.
+We call the recursive step inside the for loop. If we find multiple children which are objects, we will call the recursive step multiple times.
+
+Recursing over tree structures is useful when we're working with filesystems as well as objects. We will need the help of filesystem commands to determine whether the path we are currently looking at is a directory and to read the files that are present in that directory.
 
 ```js
 var fs = require('fs');
