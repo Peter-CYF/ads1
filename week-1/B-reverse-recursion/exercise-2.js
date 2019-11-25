@@ -1,35 +1,29 @@
 /*
-   We wrote a cunning merge function to tell our story but something went
-   wrong and it came out backward.
+    We're trying to print out a b c, but we're printing out c b a.
+    Can you fix it? I tried earlier, but I couldn't get a to work.
 
-   You're clever. You know the right order. Fix it.
- */   
-
-var first = ["I", "very", "I", "on", "walls"];
-var second = ["When", "was", "young", "drew", "the"]; 
-var merged = [];
-
-/*
-   DO NOT EDIT ANYTHING ABOVE THIS LINE
+    Hint: you don't need a return statement, and maybe you should
+    check if the character isn't 'a'.
  */
 
-function merge(left, right, output)
+function abc(value)
 {
-	if (left.length === 0) { return; }
-	output.push(left.pop());
-	merge(right, left, output);
+	let character = String.fromCharCode(value);
+	console.log(character);
+	if (character === 'a') { return; }
+	abc(value - 1);
 }
 
 /*
    DO NOT EDIT ANYTHING BELOW THIS LINE
  */
 
-merge(first, second, merged);
-console.log(merged.join(' '));
+abc("c".charCodeAt(0));
 
 /*
    EXPECTED OUTPUT:
 
-   When I was very young I drew on the walls
-
+   a
+   b
+   c
  */

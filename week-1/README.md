@@ -83,7 +83,7 @@ function countDown(count)
 	console.log(count.toString());
 
 	// Termination condition
-	if (count <= 1) { return; }
+	if (count <= 0) { return; }
 
 	// Recursive call
 	countDown(count - 1);
@@ -99,14 +99,16 @@ Taking it one step at a time:
 ```
 countDown(3) is called.
 countDown(3) prints 3 to the console.
-3 is more than 1, so countDown(2) is called.
+3 is more than 0, so countDown(2) is called.
 countDown(2) prints 2 to the console.
-2 is more than 1, so countDown(1) is called.
+2 is more than 0, so countDown(1) is called.
 countDown(1) prints 1 to the console.
-1 is equal to 1, so countDown(1) stops and we don't call countDown(0).
+1 is more than 0, so countDown(0) is called.
+countDown(0) prints 0 to the console.
+0 is equal to 0, so countDown(0) stops and we don't call countDown(-1).
 ```
 
-We print out `3 2 1`.
+We print out `3 2 1 0`.
 
 #### Exercises:
 * Clone the repo at `https://github.com/Peter-CYF/ads1`
@@ -121,7 +123,7 @@ What happens if we move the `console.log` to the bottom?
 function countDown(count)
 {
 	// Termination condition
-	if (count <= 1) { return; }
+	if (count <= 0) { return; }
 
 	// Recursive call
 	countDown(count - 1);
@@ -138,9 +140,11 @@ Run the program. Did you expect the result?
 
 ```
 countDown(3) is called.
-3 is more than 1, so countDown(2) is called.
-2 is more than 1, so countDown(1) is called.
-1 is equal to 1, so countDown(1) stops and we don't call countDown(0).
+3 is more than 0, so countDown(2) is called.
+2 is more than 0, so countDown(1) is called.
+1 is more than 0, so countDown(0) is called.
+0 is equal to 0, so countDown(0) stops and we don't call countDown(-1).
+It was called by countDown(1) so the place we return to is countDown(1) - after the countDown() call.
 countDown(1) prints 1 to the console. It returns.
 It was called by countDown(2) so the place we return to is countDown(2) - after the countDown() call.
 countDown(2) prints 2 to the console. It returns.
@@ -156,7 +160,7 @@ We should probably rename our function `countUp` now!
 
 When a function gets called recursively, each new recursive call takes it closer to its termination condition, the function call that stops the recursion - in this example, `countDown(1)`.
 
-Code in the function that executes before the recursive call will be called with the inputs to each new recursive call. In the first example we call `console.log(3)`, then `console.log(2)`, then `console.log(1)`.
+Code in the function that executes before the recursive call will be called with the inputs to each new recursive call. In the first example we call `console.log(3)`, then `console.log(2)`, then `console.log(1)` and finally `console.log(0)`.
 
 Code in the function that executes after the recursive call will be called with the inputs to each new recursive call in reverse order! In the second example we call `console.log(1)`, then `console.log(2)`, then `console.log(3)`. This is because we have to return from the functions `countDown(1)`, `countDown(2)` and `countDown(3)` in order to get to that code.
 
